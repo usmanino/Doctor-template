@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TradeBit | Sell or Buy Bitcoin Anonymously</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="img/logo.png">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/demoapi.js"></script>
+</head>
+
+<body>
+   <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__logo">
+            <a href="index.html"><img src="img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container"></div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="header__logo">
+                        <a href="index.html"><img src="img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="header__nav">
+                        <nav class="header__menu">
+                            <ul>
+                                <li class="active"><a href="transaction.html">Track Transaction</a></li>
+                            </ul>
+                        </nav>
+                        <div class="header__nav__widget">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <span class="fa fa-bars"></span>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+    <section class="set-bg" data-setbg="img/hero-bg1.png" style="padding-top: 10px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="hero__text">
+                        <div class="hero__text__title">
+                            <h2 class="" style="color: #a8cf45;">
+                                Buy and Sell Bitcoin <br />Anonymously
+                            </h2>
+                        </div>
+                        <br>
+                        <h4 class="text-muted">TradeBit makes it safe and easy to buy and sell <br />Bitcoin using your local currency.</h4>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="hero__tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Sell Bitcoin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Buy Bitcoin</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="hero__tab__form" id="sell-page-1">
+                                    <h2>Sell your bitcoin</h2>
+                                    <h4 class="text text-success">Rate : <span id="sell_rate"></span></h4><br />
+                                    <p style="font-weight: bold; color: #f00;" id="error_sell"></p>
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">How much are you selling ?</label>
+                                        <div class="input-group">
+                                            <input type="number" id="sell_amount" autocomplete="off" onkeyup="return ConvertionSell(this.value);" class="form-control" placeholder="Amount"> 
+                                            <span class="input-group-addon"><i class="badge">BTC</i></span>
+                                        </div>
+                                        <p style="font-weight: bold;" id="conversion"></p>
+                                        <div class="input-group">
+                                            <button type="button" onclick="return next_sell_1();" class="site-btn">Proceed</button>
+                                        </div>
+                                    </div>
+                                    <p style="font-weight: bold; color: #080;" id="sell_instruct"></p>
+                                </div>
+                                <div class="hero__tab__form" id="sell-page-2" style="display: none;">
+                                    <h3 class="text-justify text-decoration">Bank account details</h3><br />
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">Select bank to get your money</label>
+                                        <div class="input-group">
+                                            <select class="form-control" id="bank_select" onchange="return ResolveAccount();">
+                                                <option value="">Select</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">Account No</label>
+                                        <div class="input-group">
+                                            <input type="text" id="account_no" onblur="return ResolveAccount();" class="form-control" placeholder="Account number">
+                                        </div>
+                                        <p id="account_name" style="font-weight: bold;"></p>
+                                    </div>
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">Email to receive payment notification</label>
+                                        <div class="input-group">
+                                            <input type="email" id="email" class="form-control" placeholder="Enter Email">
+                                        </div><br />
+                                        <div class="input-group">
+                                            <button type="button" onclick="return next_sell_2();" class="site-btn">Proceed</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hero__tab__form" id="sell-page-3" style="display: none;">
+                                    <p id="btc_amt_trans" style="font-weight: bold;">Trasfer 1 Btc to the below address</p>
+                                    <img src="" id="wallet_qr" alt="barcode">
+                                    <p id="btc_wallet_address" style="font-weight: bold;"></p>
+                                    <div class="input-group">
+                                        <button type="button" onclick="return submitSell()" id="sell_button" class="site-btn">Yes, I have make the transfer</button>
+                                    </div>
+                                </div>
+                                <div class="hero__tab__form" id="sell-page-4" style="display: none;">
+                                    <div class="whole" style="width: 100%; height: 420px; background-color: #F0F0F0;">
+                                        <div style="margin: 0;">
+                                            <h3 style="padding-top: 10px; font-family: 'Lobster', cursive; text-align: center;">TradeBit Global</h3>
+                                            <hr />
+                                        </div>
+                                        <div style="font-family: 'Quicksand', sans-serif; font-size: 13px">
+                                            <p style="margin-left: 20px; font-weight: bold;">Receipt No: <span id="invoice_num"></span></p>
+                                        </div>
+                                        <div style="font-family: 'Quicksand', sans-serif; font-size: 13px">
+                                            <p style="margin-left: 20px; font-weight: bold;">Amount: <span id="invoice_amount"></span></p>
+                                        </div>
+                                        <div style="font-family: 'Quicksand', sans-serif; font-size: 13px">
+                                            <p style="margin-left: 20px; font-weight: bold;">BTC Amount: <span id="btc_amount"></span></p>
+                                        </div>
+                                        <div style="margin: 0; margin-top: 10px; font-family: 'Bitter', serif; font-size: 12px; font-size: 15px;">
+                                            <p style="font-weight: bold; text-align: center;">Wallet Address</p>
+                                        </div>
+                                        <div style="margin: 0; margin-top: 5px; font-family: Arial; font-size: 20px;">
+                                            <p style="font-weight: bold; text-align: center;" id="wallet_num"></p>
+                                        </div>
+                                        <hr />
+                                        <div style="margin: 0; margin-top: 10px; font-family: 'Oswald', sans-serif; font-size: 15px;">
+                                            <p style="font-weight: bold; text-align: center;">Thanks for your patronage!</p>
+                                            <p style="font-weight: bold; text-align: center; color: #f00;">Note: <span id="sell_message"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div class="hero__tab__form" id="buy-page-1">
+                                    <h2>Buy Your Bitcoin</h2>
+                                    <h4 class="text text-success">Rate : <span id="buy_rate"></span></h4><br />
+                                    <p style="font-weight: bold; color: #f00;" id="error_buy"></p>
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">How much do you want to buy ?</label>
+                                        <div class="input-group">
+                                            <input type="number" id="buy_amount" autocomplete="off" onkeyup="return ConvertionBuy(this.value);" class="form-control" placeholder="Amount"> 
+                                            <span class="input-group-addon"><i class="badge">NGN</i></span>
+                                        </div>
+                                        <p style="font-weight: bold;" id="conversion_buy"></p>
+                                        <div class="input-group">
+                                            <button type="button" onclick="return next_buy_1();" class="site-btn">Proceed</button>
+                                        </div>
+                                    </div>
+                                    <p style="font-weight: bold; color: #080;" id="buy_instruct"></p>
+                                </div>
+                                <div class="hero__tab__form" id="buy-page-2" style="display: none;">
+                                    <div class="form-group col-sm-12">
+                                        <label class="control-label">Enter your BTC Wallet Address</label>
+                                        <div class="input-group">
+                                            <input type="text" id="buy_address" class="form-control" placeholder="BTC wallet address you want us to credit"> 
+                                        </div><br />
+                                        <label class="control-label">Enter your email</label>
+                                        <div class="input-group">
+                                            <input type="email" id="buy_email" class="form-control" placeholder="Email"> 
+                                        </div><br />
+                                        <div class="input-group">
+                                            <button type="button" id="btc_buy" onclick="return buy();" class="site-btn">Buy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hero__tab__form" id="buy-page-3" style="display: none;">
+                                    <div class="whole" style="width: 100%; height: 420px; background-color: #F0F0F0;">
+                                        <div style="margin: 0;">
+                                            <h3 style="padding-top: 10px; font-family: 'Lobster', cursive; text-align: center;">TradeBit Global</h3>
+                                            <hr />
+                                        </div>
+                                        <div style="font-family: 'Quicksand', sans-serif; font-size: 13px">
+                                            <p style="margin-left: 20px; font-weight: bold;">Receipt No: <span id="invoice_num_buy"></span></p>
+                                        </div>
+                                        <div style="font-family: 'Quicksand', sans-serif; font-size: 13px">
+                                            <p style="margin-left: 20px; font-weight: bold;">Amount: <span id="invoice_amount_buy"></span></p>
+                                        </div>
+                                        <div style="font-family: 'Quicksand', sans-serif; font-size: 13px">
+                                            <p style="margin-left: 20px; font-weight: bold;">BTC Amount: <span id="btc_amount_buy"></span></p>
+                                        </div>
+                                        <div style="margin: 0; margin-top: 10px; font-family: 'Bitter', serif; font-size: 12px; font-size: 15px;">
+                                            <p style="font-weight: bold; text-align: center;">Wallet Address</p>
+                                        </div>
+                                        <div style="margin: 0; margin-top: 5px; font-family: Arial; font-size: 20px;">
+                                            <p style="font-weight: bold; text-align: center;" id="wallet_num_buy"></p>
+                                        </div>
+                                        <hr />
+                                        <div style="margin: 0; margin-top: 10px; font-family: 'Oswald', sans-serif; font-size: 15px;">
+                                            <p style="font-weight: bold; text-align: center;">Thanks for your purchase!</p>
+                                            <p style="font-weight: bold; text-align: center; color: #f00;">Note: <span id="buy_message"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Chooseus Section Begin -->
+    <section class="chooseus spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="chooseus__text">
+                        <div class="section-title">
+                            <h2>Why People Choose Us</h2>
+                            <p>We provide you with a delightful bitcoin purchase experience!</p>
+                        </div>
+                        <ul>
+                            <li><i class="fa fa-check-circle"></i> Trusted and Secure.</li>
+                            <li><i class="fa fa-check-circle"></i> Delightful Experience</li>
+                            <li><i class="fa fa-check-circle"></i> Beginner Friendly</li>
+                            <li><i class="fa fa-check-circle"></i> and Finally, Anonymous.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chooseus__video set-bg">
+            <img src="img/chooseus-video.png" alt="">
+        </div>
+    </section>
+    <!-- Chooseus Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
+        <div class="container">
+            <div class="footer__contact">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer__contact__title">
+                            <h2>Contact Us Now!</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer__contact__option">
+                            <div class="option__item"><i class="fa fa-phone"></i> (+234) 901-129-1130</div>
+                            <div class="option__item email"><i class="fa fa-envelope-o"></i> support@tradehallglobal.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                        </div>
+                        <p>Any questions? Let us know in office at No 10, Police Road, JAM Fortune Building, Adjacent Radio Kwara, Ilorin, Kwara State or call us on (+234) 906-586-6558, (+234) 901-129-1130</p>
+                        <div class="footer__social">
+                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3">
+                    <div class="footer__widget">
+                        <h5>Infomation</h5>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-angle-right"></i> Term and Condition</a></li>
+                            <li><a href="privacy.html"><i class="fa fa-angle-right"></i> Privacy Policy</a></li>
+                            <li><a href="about.html"><i class="fa fa-angle-right"></i> About Us</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i> FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__copyright__text">
+                <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | TradeBit</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <script src='https://js.paystack.co/v1/inline.js'></script>
+    <script type="text/javascript">
+    function ConvertionSell(amt)
+    {
+        conv = amt * usd * srate;
+        $('#conversion').html(amt + " BTC  = ₦" + numberWithCommas(conv.toFixed(2)));
+        if(conv < min_sell)
+        {
+            btc = min_sell / (usd * srate);
+            $('#error_sell').html('The Minimum Bitcoin you can sell is ' + btc.toFixed(8));
+        }
+        else
+        {
+            $('#error_sell').html('');  
+        }
+    }
+    function ConvertionBuy(amt)
+    {
+        conv_dolar = amt / brate;
+        $.get("http://blockchain.info/tobtc?currency=USD&value=" + conv_dolar, function(data, status){
+            conv = data;
+            $('#conversion_buy').html("₦" + numberWithCommas(amt) + " = " + conv + "BTC");
+            btc_value = conv;
+        });
+        if(eval(amt) < eval(min_buy))
+        {
+            $('#error_buy').html('The Minimum Amount you can buy is ' + numberWithCommas(min_buy));
+        }
+        else
+        {
+            $('#error_buy').html('');  
+        }
+    }
+    const numberWithCommas = (x) => {
+      var parts = x.toString().split(".");
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return parts.join(".");
+    }
+    </script>
+
+    <!-- Js Plugins -->
+    <script src="js/euler.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
